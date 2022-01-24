@@ -167,8 +167,19 @@ VALUES (
         "William Earle",
         "Batman Begins",
         3.25
-);
-
+),
+(
+        "Sara Stewart",
+        "Martha Wayne",
+        "Batman Begins",
+        1.75
+),
+(
+        "Colin McFarlane",
+        "Commissioner Gillian Loeb",
+        "Batman Begins",
+        1
+),
 
 -- INSERT INTO cast (actor_name, character_name, salary)
 
