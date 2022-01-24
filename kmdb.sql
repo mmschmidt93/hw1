@@ -87,6 +87,7 @@ CREATE TABLE cast (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   actor_name TEXT,
   character_name TEXT,
+  movie_name TEXT,
   screen_time INTEGER
 );
 
@@ -118,6 +119,56 @@ VALUES (
         "PG-13",
         "Christopher Nolan"
 );
+
+INSERT INTO cast (
+        actor_name,
+        character_name,
+        movie_name,
+        screen_time
+)
+VALUES (
+        "Christian Bale",
+        "Bruce Wayne",
+        "Batman Begins",
+        69.5
+),
+(
+        "Michael Caine",
+        "Alfred",
+        "Batman Begins",
+        35
+),
+(
+        "Liam Neeson",
+        "Ra's Al Ghul",
+        "Batman Begins",
+        16.5
+),
+(
+        "Katie Holmes",
+        "Rachel Dawes",
+        "Batman Begins",
+        16.25
+),
+(
+        "Gary Oldman",
+        "Commissioner Gordon",
+        "Batman Begins",
+        8.5
+),
+(
+        "Linus Roache",
+        "Thomas Wayne",
+        "Batman Begins",
+        3.5
+),
+(
+        "Rutger Hauer"
+        "William Earle",
+        "Batman Begins",
+        3.25
+)
+
 
 -- INSERT INTO cast (actor_name, character_name, salary)
 
