@@ -78,21 +78,48 @@ DROP TABLE IF EXISTS cast;
 CREATE TABLE movies (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   movie_title TEXT,
-  year released TEXT,
-  MPAA rating INTEGER,
+  year_released TEXT,
+  MPAA_rating TEXT,
   director TEXT
 );
 
 CREATE TABLE cast (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   actor_name TEXT,
-  character_name TEXT
-
+  character_name TEXT,
+  screen_time INTEGER
 );
 
 -- Insert data into your database that reflects the sample data shown above
 -- Use hard-coded foreign key IDs when necessary
 -- TODO!
+
+INSERT INTO movies(
+        movie_title, 
+        year_released, 
+        MPAA_rating, 
+        director
+)
+VALUES (
+        "Batman Begins",
+        "2005",
+        "PG-13",
+        "Christopher Nolan"
+),
+(
+        "The Dark Knight",
+        "2008",
+        "PG-13",
+        "Christopher Nolan"
+),
+(
+        "The Dark Knight Rises",
+        "2012",
+        "PG-13",
+        "Christopher Nolan"
+);
+
+-- INSERT INTO cast (actor_name, character_name, salary)
 
 -- Prints a header for the movies output
 .print "Movies"
