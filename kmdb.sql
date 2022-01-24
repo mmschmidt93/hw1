@@ -163,14 +163,15 @@ VALUES (
         3.5
 ),
 (
-        "Rutger Hauer"
+        "Rutger Hauer",
         "William Earle",
         "Batman Begins",
         3.25
-)
+);
 
 
 -- INSERT INTO cast (actor_name, character_name, salary)
+
 
 -- Prints a header for the movies output
 .print "Movies"
@@ -179,6 +180,11 @@ VALUES (
 
 -- The SQL statement for the movies output
 -- TODO!
+
+SELECT 
+    movie_title, year_released, MPAA_rating, director
+FROM
+    movies;
 
 -- Prints a header for the cast output
 .print ""
