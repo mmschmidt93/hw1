@@ -180,6 +180,72 @@ VALUES (
         "Batman Begins",
         1
 ),
+(
+        "Christian Bale",
+        "Bruce Wayne",
+        "The Dark Knight",
+        45
+),
+(
+        "Heath Ledger",
+        "The Joker",
+        "The Dark Knight",
+        33
+),
+(
+        "Aaron Eckhart",
+        "Harvey Dent",
+        "The Dark Knight",
+        24
+),
+(
+        "Michael Caine",
+        "Alfred",
+        "The Dark Knight",
+        10
+),
+(
+        "Maggie Gyllenhaal",
+        "Rachel Dawes",
+        "The Dark Knight",
+        5
+),
+(
+        "Christian Bale",
+        "Bruce Wayne",
+        "The Dark Knight Rises",
+        45
+),
+(
+        "Mike Hardy",
+        "Bane",
+        "The Dark Knight Rises",
+        22.25
+),
+(
+        "Gary Oldman",
+        "Commissioner Gordon",
+        "The Dark Knight Rises",
+        13.25
+),
+(
+        "Joseph Gordon-Levitt",
+        "John Blake",
+        "The Dark Knight Rises",
+        19.75
+),
+(
+        "Anne Hathaway",
+        "Selina Kyle",
+        "The Dark Knight Rises",
+        19
+),
+(
+        "Ben Mendelsohn",
+        "John Daggett",
+        "The Dark Knight Rises",
+        3.75
+);
 
 -- INSERT INTO cast (actor_name, character_name, salary)
 
@@ -206,3 +272,10 @@ FROM
 
 -- The SQL statement for the cast output
 -- TODO!
+
+SELECT 
+    movie_name, actor_name, character_name
+FROM
+    cast
+ORDER BY
+    screen_time DESC;
