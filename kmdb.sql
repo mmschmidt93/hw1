@@ -157,30 +157,6 @@ VALUES (
         8.5
 ),
 (
-        "Linus Roache",
-        "Thomas Wayne",
-        "Batman Begins",
-        3.5
-),
-(
-        "Rutger Hauer",
-        "William Earle",
-        "Batman Begins",
-        3.25
-),
-(
-        "Sara Stewart",
-        "Martha Wayne",
-        "Batman Begins",
-        1.75
-),
-(
-        "Colin McFarlane",
-        "Commissioner Gillian Loeb",
-        "Batman Begins",
-        1
-),
-(
         "Christian Bale",
         "Bruce Wayne",
         "The Dark Knight",
@@ -239,12 +215,6 @@ VALUES (
         "Selina Kyle",
         "The Dark Knight Rises",
         19
-),
-(
-        "Ben Mendelsohn",
-        "John Daggett",
-        "The Dark Knight Rises",
-        3.75
 );
 
 -- INSERT INTO cast (actor_name, character_name, salary)
