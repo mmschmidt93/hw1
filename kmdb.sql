@@ -72,6 +72,7 @@
 DROP TABLE IF EXISTS movies;
 DROP TABLE IF EXISTS casts;
 DROP TABLE IF EXISTS director;
+DROP TABLE IF EXISTS moviecast;
 
 -- Create new tables, according to your domain model
 -- TODO!
@@ -92,8 +93,13 @@ CREATE TABLE director (
 CREATE TABLE casts (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   actor_name TEXT,
-  character_name TEXT,
-  movie_id INTEGER
+  character_name TEXT
+);
+
+CREATE TABLE moviecast (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  movie_id INTEGER,
+  casts_id INTEGER
 );
 
 
@@ -135,86 +141,117 @@ VALUES (
 
 INSERT INTO casts (
         actor_name,
-        character_name,
-        movie_id
+        character_name
 )
 VALUES (
         "Christian Bale",
-        "Bruce Wayne",
-        1
+        "Bruce Wayne"
 ),
 (
         "Michael Caine",
-        "Alfred",
-        1
+        "Alfred"
 ),
 (
         "Liam Neeson",
-        "Ra's Al Ghul",
-        1
+        "Ra's Al Ghul"
 ),
 (
         "Katie Holmes",
-        "Rachel Dawes",
-        1
+        "Rachel Dawes"
 ),
 (
         "Gary Oldman",
-        "Commissioner Gordon",
-        1
-),
-(
-        "Christian Bale",
-        "Bruce Wayne",
-        2
+        "Commissioner Gordon"
 ),
 (
         "Heath Ledger",
-        "Joker",
-        2
+        "Joker"
 ),
 (
         "Aaron Eckhart",
-        "Harvey Dent",
-        2
-),
-(
-        "Michael Caine",
-        "Alfred",
-        2
+        "Harvey Dent"
 ),
 (
         "Maggie Gyllenhaal",
-        "Rachel Dawes",
-        2
-),
-(
-        "Christian Bale",
-        "Bruce Wayne",
-        3
-),
-(
-        "Gary Oldman",
-        "Commissioner Gordon",
-        3
+        "Rachel Dawes"
 ),
 (
         "Tom Hardy",
-        "Bane",
-        3
+        "Bane"
 ),
 (
         "Joseph Gordon-Levitt",
-        "John Blake",
-        3
+        "John Blake"
 ),
 (
         "Anne Hathaway",
-        "Selina Kyle",
-        3
+        "Selina Kyle"
 );
 
-
+INSERT INTO moviecast (
+        movie_id,
+        casts_id
+)
+VALUES(
+        1,
+        1
+),
+(
+        2,
+        1
+),
+(
+        3,
+        1
+),
+(
+        1,
+        2
+),
+(
+        1,
+        3
+),
+(
+        1,
+        4
+),
+(
+        1,
+        5
+),
+(
+        2,
+        6
+),
+(
+        2,
+        7
+),
+(
+        2,
+        2
+),
+(
+        2,
+        8
+),
+(
+        3,
+        5
+),
+(
+        3,
+        9
+),
+(
+        3,
+        10
+),
+(
+        3,
+        11
+);
 -- Prints a header for the movies output
 .print "Movies"
 .print "======"
@@ -245,10 +282,14 @@ ON
 SELECT 
     movies.movie_title, casts.actor_name, casts.character_name
 FROM
-    casts
+    moviecast
 INNER JOIN
     movies
 ON 
-    movies.id = casts.movie_id
+    movies.id = moviecast.movie_id
+INNER JOIN
+    casts
+ON
+    casts.id = moviecast.casts_id
 ORDER BY
-    casts.movie_id, casts.id;
+    movies.id, moviecast.id;
