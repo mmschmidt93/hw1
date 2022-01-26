@@ -71,6 +71,7 @@
 
 DROP TABLE IF EXISTS movies;
 DROP TABLE IF EXISTS casts;
+DROP TABLE IF EXISTS director;
 
 -- Create new tables, according to your domain model
 -- TODO!
@@ -80,16 +81,21 @@ CREATE TABLE movies (
   movie_title TEXT,
   year_released TEXT,
   MPAA_rating TEXT,
-  director TEXT
+  director_id INTEGER
+);
+
+CREATE TABLE director (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  director_name TEXT
 );
 
 CREATE TABLE casts (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   actor_name TEXT,
   character_name TEXT,
-  movie_id INTEGER,
-  screen_time INTEGER
+  movie_id INTEGER
 );
+
 
 -- Insert data into your database that reflects the sample data shown above
 -- Use hard-coded foreign key IDs when necessary
@@ -98,123 +104,114 @@ CREATE TABLE casts (
 INSERT INTO movies(
         movie_title, 
         year_released, 
-        MPAA_rating, 
-        director
+        MPAA_rating,
+        director_id
 )
 VALUES (
         "Batman Begins",
         "2005",
         "PG-13",
-        "Christopher Nolan"
+        1
 ),
 (
         "The Dark Knight",
         "2008",
         "PG-13",
-        "Christopher Nolan"
+        1
 ),
 (
         "The Dark Knight Rises",
         "2012",
         "PG-13",
+        1
+);
+
+INSERT INTO director(
+        director_name
+)
+VALUES (
         "Christopher Nolan"
 );
 
 INSERT INTO casts (
         actor_name,
         character_name,
-        movie_id,
-        screen_time
+        movie_id
 )
 VALUES (
         "Christian Bale",
         "Bruce Wayne",
-        1,
-        69.5
+        1
 ),
 (
         "Michael Caine",
         "Alfred",
-        1,
-        35
+        1
 ),
 (
         "Liam Neeson",
         "Ra's Al Ghul",
-        1,
-        16.5
+        1
 ),
 (
         "Katie Holmes",
         "Rachel Dawes",
-        1,
-        16.25
+        1
 ),
 (
         "Gary Oldman",
         "Commissioner Gordon",
-        1,
-        8.5
+        1
 ),
 (
         "Christian Bale",
         "Bruce Wayne",
-        2,
-        45
+        2
 ),
 (
         "Heath Ledger",
         "Joker",
-        2,
-        33
+        2
 ),
 (
         "Aaron Eckhart",
         "Harvey Dent",
-        2,
-        24
+        2
 ),
 (
         "Michael Caine",
         "Alfred",
-        2,
-        10
+        2
 ),
 (
         "Maggie Gyllenhaal",
         "Rachel Dawes",
-        2,
-        5
+        2
 ),
 (
         "Christian Bale",
         "Bruce Wayne",
-        3,
-        45
-),
-(
-        "Tom Hardy",
-        "Bane",
-        3,
-        22.25
+        3
 ),
 (
         "Gary Oldman",
         "Commissioner Gordon",
-        3,
-        28
+        3
+),
+(
+        "Tom Hardy",
+        "Bane",
+        3
 ),
 (
         "Joseph Gordon-Levitt",
         "John Blake",
-        3,
-        19.75
+        3
 ),
 (
         "Anne Hathaway",
         "Selina Kyle",
-        3,
-        19
+        3
 );
 
 
@@ -227,9 +224,13 @@ VALUES (
 -- TODO!
 
 SELECT 
-    movie_title, year_released, MPAA_rating, director
+    movies.movie_title, movies.year_released, movies.MPAA_rating, director.director_name
 FROM
-    movies;
+    movies
+INNER JOIN
+    director
+ON 
+    director.id = movies.director_id;
 
 -- Prints a header for the cast output
 .print ""
@@ -250,4 +251,4 @@ INNER JOIN
 ON 
     movies.id = casts.movie_id
 ORDER BY
-    casts.movie_id, casts.screen_time DESC;
+    casts.movie_id, casts.id;
