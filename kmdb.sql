@@ -70,7 +70,7 @@
 -- TODO!
 
 DROP TABLE IF EXISTS movies;
-DROP TABLE IF EXISTS cast;
+DROP TABLE IF EXISTS casts;
 
 -- Create new tables, according to your domain model
 -- TODO!
@@ -83,11 +83,11 @@ CREATE TABLE movies (
   director TEXT
 );
 
-CREATE TABLE cast (
+CREATE TABLE casts (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   actor_name TEXT,
   character_name TEXT,
-  movie_name TEXT,
+  movie_id INTEGER,
   screen_time INTEGER
 );
 
@@ -120,104 +120,102 @@ VALUES (
         "Christopher Nolan"
 );
 
-INSERT INTO cast (
+INSERT INTO casts (
         actor_name,
         character_name,
-        movie_name,
+        movie_id,
         screen_time
 )
 VALUES (
         "Christian Bale",
         "Bruce Wayne",
-        "Batman Begins",
+        1,
         69.5
 ),
 (
         "Michael Caine",
         "Alfred",
-        "Batman Begins",
+        1,
         35
 ),
 (
         "Liam Neeson",
         "Ra's Al Ghul",
-        "Batman Begins",
+        1,
         16.5
 ),
 (
         "Katie Holmes",
         "Rachel Dawes",
-        "Batman Begins",
+        1,
         16.25
 ),
 (
         "Gary Oldman",
         "Commissioner Gordon",
-        "Batman Begins",
+        1,
         8.5
 ),
 (
         "Christian Bale",
         "Bruce Wayne",
-        "The Dark Knight",
+        2,
         45
 ),
 (
         "Heath Ledger",
-        "The Joker",
-        "The Dark Knight",
+        "Joker",
+        2,
         33
 ),
 (
         "Aaron Eckhart",
         "Harvey Dent",
-        "The Dark Knight",
+        2,
         24
 ),
 (
         "Michael Caine",
         "Alfred",
-        "The Dark Knight",
+        2,
         10
 ),
 (
         "Maggie Gyllenhaal",
         "Rachel Dawes",
-        "The Dark Knight",
+        2,
         5
 ),
 (
         "Christian Bale",
         "Bruce Wayne",
-        "The Dark Knight Rises",
+        3,
         45
 ),
 (
-        "Mike Hardy",
+        "Tom Hardy",
         "Bane",
-        "The Dark Knight Rises",
+        3,
         22.25
 ),
 (
         "Gary Oldman",
         "Commissioner Gordon",
-        "The Dark Knight Rises",
-        13.25
+        3,
+        28
 ),
 (
         "Joseph Gordon-Levitt",
         "John Blake",
-        "The Dark Knight Rises",
+        3,
         19.75
 ),
 (
         "Anne Hathaway",
         "Selina Kyle",
-        "The Dark Knight Rises",
+        3,
         19
 );
-
--- INSERT INTO cast (actor_name, character_name, salary)
 
 
 -- Prints a header for the movies output
@@ -244,8 +242,12 @@ FROM
 -- TODO!
 
 SELECT 
-    movie_name, actor_name, character_name
+    movies.movie_title, casts.actor_name, casts.character_name
 FROM
-    cast
+    casts
+INNER JOIN
+    movies
+ON 
+    movies.id = casts.movie_id
 ORDER BY
-    screen_time DESC;
+    casts.movie_id, casts.screen_time DESC;
